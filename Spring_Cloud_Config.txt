@@ -1,7 +1,19 @@
 Spring Cloud Config
 -------------------
-
 Spring cloud configuration files are typically YML, properties files. It can serve any text files. Typical file names generally in the format  {application_name}-{profile}, where profile is the enviornment name. Default profile name is native. Spring cloud config returns all matched files.
+
+why spring cloud config
+-----------------------
+Applications are not just about code. Usually they need connection to resources like databases, messaging queues, email servers, web services etc. 
+
+It is always suggested to externalize configuration to change the runtime behaviour of the application. Spring cloud is useful in this situations.
+
+Different configuration options
+-------------------------------
+1)package configuration files with the application. --> It requires rebuild,restart if changed.
+2)configuration files in file system --> Not available in cloud.
+3)use environment variables --> These are done differently on different os platforms. Also, tough to manage large no of individual variables to manage.
+4)cloud vendor specific solution --> Tightly coupled to the vendor.
 
 The role of configuration in micro services
 -------------------------------------------
@@ -12,9 +24,18 @@ The role of configuration in micro services
 Problems with local configuration
 ---------------------------------
 1)Local configuration files may fall out of sync. Packaging an application with configuration itself can lead to security issues. Also, a single change can cause the continuous integration process run again and can result in a redeployment.
-2)No history of changes with env variables. For ex, if someone changes the configuration in production, it is tough to track what were the previous values.
-3)There can be challenges with sensitive information. You may accidentally expose the production configuration.
-4)Inconsistent usage across teams.
+2)For large no of microservices, it's tough to manage manually.
+3)No history of changes with env variables. For ex, if someone changes the configuration in production, it is tough to track what were the previous values.
+4)There can be challenges with sensitive information. You may accidentally expose the production configuration.
+5)Inconsistent usage across teams.
+
+Desired solution for configuration
+----------------------------------
+1)platform/cloud independent solution
+2)centralized
+3)dynamic --> should be able to update while the application is running
+4)controllable --> like source control management choices
+5)passive --> services should do most of the work by self registering.(useful in systems with large no of microservices.)
 
 Creating a config server
 ------------------------
@@ -23,6 +44,8 @@ Spring cloud config is http access to git or file based configurations. Creating
 2)Add config files(different formats are supported)
 3)Build the spring project(spring boot is the easiest way to do this)
 4)secure the configurations
+
+Note: Clients connect to config server over http. So, client applications can be in any technology. Also, Config server should be highly available. So, there should be more than one instance of it should be running and should be load balanced.
 
 Config Server for local files
 -----------------------------
@@ -34,7 +57,26 @@ The easiest way to do is by following the steps below.
 
 Working with Config Server URIs
 -------------------------------
-URI pattern to get configurations is /{app_name}/{profile}[/{label}], where label is optional.
+The configuration file in git should be of the format : <spring.application.name>-<spring.profiles.active>.yml
+
+Note: yml takes precedence over properties file. Yml file can take multiple properties in a single file.
+
+Instaead of having s1rates-dev.properties and s1rates-prod.properties, we can write them in a single file like this.
+
+	#s1rates.yml
+	---
+	spring:
+	  profiles: dev
+	property: value
+
+	---
+	spring:
+	  profiles: prod
+	property: value  
+
+Client applications access configuration through URI pattern http://<server>:<port>/<spring.application.name>/<spring.profiles.active>[/{label}], where label is optional.
+
+Note: client applications access the configuration using the above URL automatically on startup.
 
 For ex, lets take the following folder structure of a git configuration repository where rates is the root directory.
 	rates |
@@ -48,7 +90,7 @@ For ex, lets take the following folder structure of a git configuration reposito
 						|-->s2rates-dev.properties
 						|-->s2rates.properties
 						
-Sample Application.yml(or properties) file of Config server 
+Sample application.yml(or properties) file of Config server 
 ------------------------------------------------------------
 #Port on which config server is running
 server:
@@ -87,12 +129,34 @@ Examples
 /s3rates/dev returns application.properties because application.properties file is default
 /s3rates returns 404 because profile names is missing.
 
-Consuming Configurations from Spring Applications
+*****
+Note: Spring cloud config server uses EnvironmentRepository. There are two implementations available for Git and file systems. If you want to use any other source, implement EnvironmentRepository interface. This interface has one method "findOne".
+
+Consuming Configurations from client Applications
 -------------------------------------------------
 Spring applications use Config servers as property source. They load values based on app name, spring profile, label etc.
 app name comes spring.cloud.config.name or spring.application.name property.
 profile comes from spring.cloud.config.env or spring.profiles.active property.
 label comes from spring.cloud.config.label property.
+
+How properties work in client applications
+------------------------------------------
+Spring apps have an Environment object. Environment object contains multiple property sources. These property sources typically are env variables,system properties, jndi , properties files etc.
+
+Spring cloud config client library adds another property source by connecting to server over http with the url format of the config server as mentioned above.
+
+As a result of this, server properties become part of client's application.
+
+what if config server is down?
+Ans: Typically it should run on several machines, so downtime should not be an issue.
+
+Client applications should handle the case of missing server with the following setting.
+
+	spring.cloud.config.failFast = true (default is false)
+
+Note: With the above setting, client applications won't run without server running. 
+
+Note: By default config server properties takes precedence over local settings on the client applications. The better approach is to provide local fallback settings incase of server failure.
 
 Security to Configurations
 --------------------------

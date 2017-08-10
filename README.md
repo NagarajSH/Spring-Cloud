@@ -50,3 +50,43 @@ Spring Cloud Contract --> Stubs for service contracts<br>
 Spring boot<br>
 -----------<br>
 Spring boot is an opinionated runtime for spring. It follows convention over configuration.i.e. It mostly depends on Annotation code than large xml configuration files. The opinions can be overridden. It handles boiler plate setup. It has simple dependency management. Embeds app server in executable jar. It has built-in end points for health metrics.
+
+Spring-cloud
+------------
+The goal of Spring cloud is to address the need of cloud based applications. cloud based applications are distributed applications running in an environment that is best characterized as volatile. There are some common patterns that are needed to address the reality of this platform. These patterns include centralized configuration management,service registration and discovery,load balancing,circuit brakers,routing,gateway etc.
+
+Note: Spring cloud projects are all based on spring boot for easier dependency management.
+spring cloud applicationcontext startup process is modified, it is not done in normal way.
+
+As mentioned about spring cloud is based on spring boot. The required parent dependency is needed as follows.
+
+	<parent>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-parent</artifactId>
+		<version>Angel.SR4</version>
+	</parent>
+
+Note: The version of parent changes very regularly. keep this up to date.
+*****
+Note: Depends on your organization project structure you may already have a parent dependency defined. In such cases where you can't change the parent pom, add the same configuration in dependencymanagement section of the project pom like this.
+
+	<dependencymanagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>Angel.SR4</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencymanagement>
+	
+In the dependency section, based on the requirement you choose on of the dependencies as follows.
+
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-eureka</artifactId>
+	</dependency>
+	
+	
