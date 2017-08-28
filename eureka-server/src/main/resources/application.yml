@@ -1,0 +1,44 @@
+#primary
+---
+server:
+  port: 8008
+spring:
+  profiles: primary
+  application:
+    name: eureka-server
+eureka:
+  client:
+    service-url:
+      { defaultZone: "http://localhost:8009/eureka/","http://localhost:8010/eureka/"}
+    #register-with-eureka: false
+    #fetch-registry: false
+
+#secondary
+---
+server:
+  port: 8009
+spring:
+  profiles: secondary
+  application:
+    name: eureka-server
+eureka:
+  client:
+    service-url:
+      { defaultZone: "http://localhost:8008/eureka/","http://localhost:8010/eureka/"}
+    #register-with-eureka: false
+    #fetch-registry: false    
+
+#tertiary
+---
+server:
+  port: 8010
+spring:
+  profiles: tertiary
+  application:
+    name: eureka-server
+eureka:
+  client:
+    service-url:
+      { defaultZone: "http://localhost:8008/eureka/","http://localhost:8009/eureka/"}
+    #register-with-eureka: false
+    #fetch-registry: false    

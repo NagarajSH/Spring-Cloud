@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: service-subject
+  cloud:
+    config:
+      username: user1
+      password: passwd123   
+      uri: http://localhost:8888
+encrypt:
+  key: MysecretKey
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    
+    
