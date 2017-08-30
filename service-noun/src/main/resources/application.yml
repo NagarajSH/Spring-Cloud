@@ -2,11 +2,14 @@
 #  client:
 #    service-url:
 #      { defaultZone : "http://localhost:8010/eureka/"}
-      
-server:
-  port: 8015
 
-words:  boat,book,vote,seat,backpack,partition,groundhog
+#server:
+#  port: 8015      
+server:
+  port: 8016
+
+#words:  boat,book,vote,seat,backpack,partition,groundhog
+words:  icicle,refrigerator,blizzard,snowball
 
 
         
