@@ -7,5 +7,9 @@ spring:
       password: passwd123   
       uri: http://localhost:8888
 encrypt:
-  key: MysecretKey    
+  key: MysecretKey
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false      
     
