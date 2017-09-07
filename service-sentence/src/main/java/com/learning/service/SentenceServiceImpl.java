@@ -9,19 +9,19 @@ import com.learning.dao.WordDao;
 @Service
 public class SentenceServiceImpl implements SentenceService {
 
-	private WordDao verbService;
-	private WordDao subjectService;
-	private WordDao articleService;
-	private WordDao adjectiveService;
+	//private WordDao verbService;
+	//private WordDao subjectService;
+	//private WordDao articleService;
+	//private WordDao adjectiveService;
 	//private WordDao nounService;
-	@Autowired
-	private NounClient nounService;
+	//@Autowired
+	//private NounClient nounService;
 	
 
 	/**
 	 * Assemble a sentence by gathering random words of each part of speech:
 	 */
-	public String buildSentence() {
+	/*public String buildSentence() {
 		String sentence = "There was a problem assembling the sentence!";
 		sentence =  
 			String.format("%s %s %s %s %s.",
@@ -52,12 +52,29 @@ public class SentenceServiceImpl implements SentenceService {
 	@Autowired
 	public void setAdjectiveService(WordDao adjectiveService) {
 		this.adjectiveService = adjectiveService;
-	}
+	}*/
 
 	/*@Autowired
 	public void setNounService(WordDao nounService) {
 		this.nounService = nounService;
 	}*/
+	
+	@Autowired WordService wordService;
+	
+
+	/**
+	 * Assemble a sentence by gathering random words of each part of speech:
+	 */
+	public String buildSentence() {
+		return  
+			String.format("%s %s %s %s %s.",
+				wordService.getSubject(),
+				wordService.getVerb(),
+				wordService.getArticle(),
+				wordService.getAdjective(),
+				wordService.getNoun())
+			;
+	}
 
 	
 }
