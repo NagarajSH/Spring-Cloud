@@ -1,14 +1,24 @@
 package com.learning.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@ConfigurationProperties(prefix="noun")
 public class HelloController {
 	
-	@Value("${words}")
+	//@Value("${words}")
 	private String words;
+
+	public String getWords() {
+		return words;
+	}
+
+	public void setWords(String words) {
+		this.words = words;
+	}
 
 	@RequestMapping("/")
 	public String getWord(){

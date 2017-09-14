@@ -6,7 +6,4 @@
 server:
   port: 8014
 
-words:  reasonable,leaky,suspicious,ordinary,unlikely
-
-
-        
+#words:  reasonable,leaky,suspicious,ordinary,unlikely

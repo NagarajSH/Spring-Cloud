@@ -9,7 +9,7 @@ server:
   port: 8015      
 spring:
   profiles: primary
-words:  boat,book,vote,seat,backpack,partition,groundhog
+#words:  boat,book,vote,seat,backpack,partition,groundhog
 
 #secondary
 ---
@@ -17,6 +17,6 @@ server:
   port: 8016
 spring:
   profiles: secondary
-words:  icicle,refrigerator,blizzard,snowball
+#words:  icicle,refrigerator,blizzard,snowball
 
         
