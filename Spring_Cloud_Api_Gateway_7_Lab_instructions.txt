@@ -1,0 +1,20 @@
+1)Create a spring starter project with dependencies web, thymeleaf,config,eureka and zuul.
+2)copy the css,js and html present in the service-gateway project to the respective directories
+3)open the main application class and add the annotation @EnableZuulProxy
+4)you can access the url : localhost:8080/*, where * represents service-noun,service-subject etc.
+5)The url localhost:8080/ opens the sentence.html thymeleaf page with a random sentence for every refresh.
+
+Etag support
+------------
+1)Open the main application class and add the below bean.
+
+	@Bean
+	public Filter shallowEtagHeaderFilter() {
+	    return new ShallowEtagHeaderFilter();
+	}
+
+2)Now access the url: localhost:8080/ and observe the network tab in the debugger. you can see some calls returned with 304. 
+
+why only some calls 304?
+Ans: Because words returning by the backend service are random, the one's which return the same value again comeback with 304.
+
