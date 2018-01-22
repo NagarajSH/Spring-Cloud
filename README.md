@@ -20,6 +20,14 @@ Core characteristics of micro services<br>
 5)Delivered continously via automation<br>
 6)Built and run by individual teams<br>
 
+Martin Fowler about common characteristics of micro services
+
+Componentization, the ability to replace parts of a system, comparing with stereo components where each piece can be replaced independently from the others.<br>
+Organisation around business capabilities instead of around technology.<br>
+Smart endpoints and dumb pipes, explicitly avoiding the use of an Enterprise Service Bus (ESB).<br>
+Decentralised data management with one database for each service instead of one database for a whole company.<br>
+Infrastructure automation with continuous delivery being mandatory.<br>
+
 Q/A: Should every app turned into a set of micro services?<br>
 Ans: Not necissarily. Some apps that don't change much and stay in more steady state and don't deserve their own team and continous delivery then keep things as they are because keeping your effort doesn't make much difference.
 
