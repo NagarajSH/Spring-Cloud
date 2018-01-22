@@ -28,6 +28,17 @@ Smart endpoints and dumb pipes, explicitly avoiding the use of an Enterprise Ser
 Decentralised data management with one database for each service instead of one database for a whole company.<br>
 Infrastructure automation with continuous delivery being mandatory.<br>
 
+Cloud native application characteristics:
+-----------------------------------------
+
+The Application is composed of multiple services: what looks like a single application to the end user, for example a Software-as-a-Service (SaaS) human resources application, or a streaming music service, is actually delivered by a set of co-operating services. Clients interact with the application as a whole; typically via a single API. However, internally the application is made up of multiple cooperating services, much like an object-oriented application is made up of multiple cooperating objects.
+
+Each service is elastic: this means that each service can scale-up or scale-down independently of other services. Ideally the scaling is automatic, based on load or other defined triggers. Cloud computing costs are typically based on usage, and being able to dynamically manage scalability in a granular manner enables efficient use of the underlying resources.
+
+Each service is resilient: this means that each service is highly-available and can survive infrastructure failures. This characteristic limits the failure domain, due to software bugs or hardware issues.
+
+Each service is composable: this implies that the service is designed to allow it to be part of other applications. At the minimum, each Service has an Application Programming Interface (API) that is uniform and discoverable, and in addition can have well defined behaviors for registration, discovery, and request management.
+
 Q/A: Should every app turned into a set of micro services?<br>
 Ans: Not necissarily. Some apps that don't change much and stay in more steady state and don't deserve their own team and continous delivery then keep things as they are because keeping your effort doesn't make much difference.
 
