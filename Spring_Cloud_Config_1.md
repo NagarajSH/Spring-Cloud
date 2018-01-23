@@ -81,6 +81,7 @@ Note: client applications should have the properties spring.application.name and
 Note: client applications access the configuration using the above URL automatically on startup.
 
 For ex, lets take the following folder structure of a git configuration repository where rates is the root directory.
+	
 	rates |
 	      |--> application.properties
 		  |--> station1 |
@@ -94,32 +95,33 @@ For ex, lets take the following folder structure of a git configuration reposito
 						
 Sample application.yml(or properties) file of Config server 
 ------------------------------------------------------------
-#Port on which config server is running
-server:
-  port: 8888
-#uri of git configuration   
-spring:
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/tulasidamarla/config-properties
-          #use the below two properties for private access
-          #username: tulasidamarla 
-          #password: krishna@418
-          
-          #search for subfolders name starts with station
-          search-paths:
-            - 'station*'
-          repos:
-            #alternate repo name 'perf'
-            perf:
-              #url pattern For ex: localhost:8888/s1rates/perf
-              pattern:
-                -"*/perf"
-              uri: https://github.com/tulasidamarla/config-properties-perf
-              search-paths:
-                -'station*'
+
+	#Port on which config server is running
+	server:
+	  port: 8888
+	#uri of git configuration   
+	spring:
+	  cloud:
+	    config:
+	      server:
+		git:
+		  uri: https://github.com/tulasidamarla/config-properties
+		  #use the below two properties for private access
+		  #username: tulasidamarla 
+		  #password: krishna@418
+
+		  #search for subfolders name starts with station
+		  search-paths:
+		    - 'station*'
+		  repos:
+		    #alternate repo name 'perf'
+		    perf:
+		      #url pattern For ex: localhost:8888/s1rates/perf
+		      pattern:
+			-"*/perf"
+		      uri: https://github.com/tulasidamarla/config-properties-perf
+		      search-paths:
+			-'station*'
 
 Note: repos property is used to configure alternate repo(For ex testing, performance). you should configure alternate repo to be invoked with different uri pattern(like */perf).
 
