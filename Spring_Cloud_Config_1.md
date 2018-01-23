@@ -74,8 +74,7 @@ Instaead of having s1rates-dev.properties and s1rates-prod.properties, we can wr
 	  profiles: prod
 	property: value  
 
-Client applications access configuration through URI pattern http://<server>:<port>/<spring.application.name>/<spring.profiles.active>[/{label}], where label is optional.
-
+Client applications access configuration through URI pattern http://configserver:port/spring.application.name/spring.profiles.active/label , where label is optional.
 Note: client applications should have the properties spring.application.name and spring.cloud.config.uri in bootstrap.properties file.
 
 Note: client applications access the configuration using the above URL automatically on startup.
