@@ -108,4 +108,7 @@ In the dependency section, based on the requirement you choose on of the depende
 		<artifactId>spring-cloud-starter-eureka</artifactId>
 	</dependency>
 	
-	
+###Spring-cloud-projects
+
+[Spring Cloud Config](Spring_Cloud_Config_1.txt)
+
