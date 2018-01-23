@@ -10,49 +10,49 @@ It is always suggested to externalize configuration to change the runtime behavi
 
 Different configuration options
 -------------------------------
-1)package configuration files with the application. --> It requires rebuild,restart if changed.
-2)configuration files in file system --> Not available in cloud.
-3)use environment variables --> These are done differently on different os platforms. Also, tough to manage large no of individual variables to manage.
+1)package configuration files with the application. --> It requires rebuild,restart if changed.<br>
+2)configuration files in file system --> Not available in cloud.<br>
+3)use environment variables --> These are done differently on different os platforms. Also, tough to manage large no of individual variables to manage.<br>
 4)cloud vendor specific solution --> Tightly coupled to the vendor.
 
 The role of configuration in micro services
 -------------------------------------------
-1)Configuration removes settings from compiled code. Configurations like connection strings,logging settings etc are externalized so that the code is easily portable between different environments.
-2)Configurations can be used to change runtime behaviour. For ex, changing logging levels for different environments for debugging. This is only possible if configuration is present externally otherwise you may need to redeploy the entire application.
+1)Configuration removes settings from compiled code. Configurations like connection strings,logging settings etc are externalized so that the code is easily portable between different environments.<br>
+2)Configurations can be used to change runtime behaviour. For ex, changing logging levels for different environments for debugging. This is only possible if configuration is present externally otherwise you may need to redeploy the entire application.<br>
 3)Configuration provides consistency across elastic services.i.e. It is very common to scale up/scale down the service instances. While doing this, it is required to have consistency because when scaling up an instance, we know that it shares some common configuration.
 
 Problems with local configuration
 ---------------------------------
-1)Local configuration files may fall out of sync. Packaging an application with configuration itself can lead to security issues. Also, a single change can cause the continuous integration process run again and can result in a redeployment.
-2)For large no of microservices, it's tough to manage manually.
-3)No history of changes with env variables. For ex, if someone changes the configuration in production, it is tough to track what were the previous values.
-4)There can be challenges with sensitive information. You may accidentally expose the production configuration.
+1)Local configuration files may fall out of sync. Packaging an application with configuration itself can lead to security issues. Also, a single change can cause the continuous integration process run again and can result in a redeployment.<br>
+2)For large no of microservices, it's tough to manage manually.<br>
+3)No history of changes with env variables. For ex, if someone changes the configuration in production, it is tough to track what were the previous values.<br>
+4)There can be challenges with sensitive information. You may accidentally expose the production configuration.<br>
 5)Inconsistent usage across teams.
 
 Desired solution for configuration
 ----------------------------------
-1)platform/cloud independent solution
-2)centralized
-3)dynamic --> should be able to update while the application is running
-4)controllable --> like source control management choices
+1)platform/cloud independent solution<br>
+2)centralized<br>
+3)dynamic --> should be able to update while the application is running<br>
+4)controllable --> like source control management choices<br>
 5)passive --> services should do most of the work by self registering.(useful in systems with large no of microservices.)
 
 Creating a config server
 ------------------------
-Spring cloud config is http access to git or file based configurations. Creating a config server has the following steps.
-1)Choose a config source(git or file based)
-2)Add config files(different formats are supported)
-3)Build the spring project(spring boot is the easiest way to do this)
+Spring cloud config is http access to git or file based configurations. Creating a config server has the following steps.<br>
+1)Choose a config source(git or file based)<br>
+2)Add config files(different formats are supported)<br>
+3)Build the spring project(spring boot is the easiest way to do this)<br>
 4)secure the configurations
 
 Note: Clients connect to config server over http. So, client applications can be in any technology. Also, Config server should be highly available. So, there should be more than one instance of it should be running and should be load balanced.
 
 Config Server for local files
 -----------------------------
-The easiest way to do is by following the steps below.
-1)create a spring starter project
-2)Annotate the main class(@EnbaleConfigServer)
-3)Set the application properties(properties of config server app like port,profile etc)
+The easiest way to do is by following the steps below.<br>
+1)create a spring starter project<br>
+2)Annotate the main class(@EnbaleConfigServer)<br>
+3)Set the application properties(properties of config server app like port,profile etc)<br>
 4)Add local configuration files(properties files that you want to expose)
 
 Working with Config Server URIs
@@ -125,10 +125,10 @@ Note: repos property is used to configure alternate repo(For ex testing, perform
 
 Examples
 --------
-/s1rates/default returns application.properties,station1/s1rates.properties because application.properties is default one for all and s1rates.properties is default for s1 rates. 
-/s1rates/qa returns application.properties,station1/s1rates.properties and station1/s1rates-qa.properties 
-/s1rates-prod returns application.properties, station1/s1rates.properties 
-/s3rates/dev returns application.properties because application.properties file is default
+/s1rates/default returns application.properties,station1/s1rates.properties because application.properties is default one for all and s1rates.properties is default for s1 rates. <br>
+/s1rates/qa returns application.properties,station1/s1rates.properties and station1/s1rates-qa.properties <br>
+/s1rates-prod returns application.properties, station1/s1rates.properties <br>
+/s3rates/dev returns application.properties because application.properties file is default <br>
 /s3rates returns 404 because profile names is missing.
 
 *****
@@ -136,9 +136,9 @@ Note: Spring cloud config server uses EnvironmentRepository. There are two imple
 
 Consuming Configurations from client Applications
 -------------------------------------------------
-Spring applications use Config servers as property source. They load values based on app name, spring profile, label etc.
-app name comes spring.cloud.config.name or spring.application.name property.
-profile comes from spring.cloud.config.env or spring.profiles.active property.
+Spring applications use Config servers as property source. They load values based on app name, spring profile, label etc.<br>
+app name comes spring.cloud.config.name or spring.application.name property.<br>
+profile comes from spring.cloud.config.env or spring.profiles.active property.<br>
 label comes from spring.cloud.config.label property.
 
 How properties work in client applications
@@ -162,10 +162,10 @@ Note: By default config server properties takes precedence over local settings o
 
 Security to Configurations
 --------------------------
-Adding basic authentication and testing it has the following steps.
-1)Add pom dependency spring-boot-starter-security
-2)Test the project to get authentication error
-3)Add Basic auth credentials and call api with valid credentials
+Adding basic authentication and testing it has the following steps.<br>
+1)Add pom dependency spring-boot-starter-security<br>
+2)Test the project to get authentication error<br>
+3)Add Basic auth credentials and call api with valid credentials<br>
 4)update client apps with credentials
 
 Note:Adding spring-boot-starter-security pom dependency automatically creates basic http auth. you can notice the default password set by spring on console like this.
@@ -210,14 +210,13 @@ Encrypting and Decrypting Configurations
 Encryption is useful, if someone accidentally got access to the URL, all the sensitive information like connection strings, usernames, passwords etc is not human readable.
 Also, if property values are properly encrypted, your git repository can be public it is not necessarily to be private.
 
-Encryption and Decryption can be done two ways. Symmetric and Assymetric keys.
-Symmetric option shares a key where as assymetric option shares a key-pair.
+Encryption and Decryption can be done two ways. Symmetric and Assymetric keys.<br>
+Symmetric option shares a key where as assymetric option shares a key-pair.<br>
 Assymetric option is more robust and secure.
 
 Symmetric option is easy to set. All we need to do is to set encrypt.key property to some secret value in properties file. Ideally it is an environment variable rather than a property in properties file.
 
-Assymetric key is set as a pem encoded text value using encrypt.key or using a key store  
-which is handy bcoz it comes with jdk. So, Assymetric options are more secure because they register some keys.
+Assymetric key is set as a pem encoded text value using encrypt.key or using a key store, which is handy bcoz it comes with jdk. So, Assymetric options are more secure because they register some keys.
 
 Encryption end points
 ---------------------
@@ -227,26 +226,26 @@ Note: Instead of sending the unencrypted values over the wire, you can do encryp
 
 Encryption and decryption steps
 -------------------------------
-1)Download full strenth JCE(The Java Cryptography Extension (JCE) is an officially released Standard Extension to the Java Platform and part of Java Cryptography Architecture. JCE provides a framework and implementation for encryption, key generation and key agreement, and Message Authentication Code (MAC) algorithms)
-2)Add key to bootstrap.properties file.
-3)Generate encrypted value and add to the properties file.
-4)Retrieve configuration via API
-5)Test client app with server side decrypted value
-6)update server to require client side decryption
-7)change client to decrypt.
+1)Download full strenth JCE(The Java Cryptography Extension (JCE) is an officially released Standard Extension to the Java Platform and part of Java Cryptography Architecture. JCE provides a framework and implementation for encryption, key generation and key agreement, and Message Authentication Code (MAC) algorithms)<br>
+2)Add key to bootstrap.properties file.<br>
+3)Generate encrypted value and add to the properties file.<br>
+4)Retrieve configuration via API<br>
+5)Test client app with server side decrypted value<br>
+6)update server to require client side decryption<br>
+7)change client to decrypt.<br>
 
 Steps for config server encryption 
 ------------------------------------
-1)Download jce from http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html and extract the zip file jce_policy-8.zip.
-2)copy the local_policy.jar and US_export_policy.jar from extracted zip directory to jre_install_location/lib/security. Take backup of those two jar files in lib/security  directory if needed.
-3)Add encrypt.key property to bootstrap.properties of your config server app. 
-4)Use postman or rest-client to send a post request to /encrypt endpoint (Remember to set username and password in Authorization header) and send the below in request body.
+1)Download jce from http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html and extract the zip file jce_policy-8.zip.<br>
+2)copy the local_policy.jar and US_export_policy.jar from extracted zip directory to jre_install_location/lib/security. Take backup of those two jar files in lib/security  directory if needed.<br>
+3)Add encrypt.key property to bootstrap.properties of your config server app. <br>
+4)Use postman or rest-client to send a post request to /encrypt endpoint (Remember to set username and password in Authorization header) and send the below in request body.<br>
 	connString=server123;user=root;password=passwd123
-I got the below response in my machine.
+I got the below response in my machine.<br>
 af65ff719716c232518cb14017df96fb10de2af655874ef72b96882b73f69e5b3c6915271fe7ddced739b3c75822e09b58ba1e7eb355b3848a091898090b7135a852306d88946da4f64b083cf5289cf9
 
-Note: you can verify the above response with /decrypt end point with above encrypted request to retrieve your original request body.
-5)Add the encrypted value in git like this.
+Note: you can verify the above response with /decrypt end point with above encrypted request to retrieve your original request body.<br>
+5)Add the encrypted value in git like this.<br>
 connstring={cipher}af65ff719716c232518cb14017df96fb10de2af655874ef72b96882b73f69e5b3c6915271fe7ddced739b3c75822e09b58ba1e7eb355b3848a091898090b7135a852306d88946da4f64b083cf5289cf9
 
 Steps for client side encryption/decryption
@@ -259,5 +258,5 @@ Steps for client side encryption/decryption
 Refreshing Configurations
 -------------------------
 If a property is changed in git, client application can get those changes without restarting. The following steps are required for this.
-1)Annotate the client Controller class with RefreshScope
+1)Annotate the client Controller class with RefreshScope<br>
 2)Hit the client app url /refresh to take the updated values. This is a POST url not GET.
