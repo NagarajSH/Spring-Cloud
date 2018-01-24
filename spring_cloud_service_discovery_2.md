@@ -111,6 +111,9 @@ Note: Config first bootstrap is the default approach and Eureka first bootstrap 
 Note: If you want more information go through the following link:
 https://spring.io/blog/2015/01/20/microservice-registration-and-discovery-with-spring-cloud-and-netflix-s-eureka
 
+Lab Instructions
+----------------
+[Service Discovery Lab Instructions]spring_cloud_service_discovery_lab_instructions.md
 
 
 	
