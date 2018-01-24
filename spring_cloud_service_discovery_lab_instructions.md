@@ -1,12 +1,12 @@
 **Part 1, create server**
 
 1. Create a new Spring Boot application.
-  - Name the project "lab-4-eureka-serverî, and use this value for the Artifact.  
+  - Name the project "lab-4-eureka-server‚Äù, and use this value for the Artifact.  
   - Use JAR packaging and the latest versions of Java.  
   - Boot version 1.5.x is the most recent at the time of this writing, but you can use the latest stable version available.  
   - No need to select any dependencies.
 
-2. Edit the POM (or Gradle) file.  Add a ìDependency Managementî section (after <properties>, before <dependencies>) to identify the spring cloud parent POM.  "Dalston.RELEASE" is the most recent stable version at the time of this writing, but you can use the latest stable version available.  Example:
+2. Edit the POM (or Gradle) file.  Add a ‚ÄúDependency Management‚Äù section (after <properties>, before <dependencies>) to identify the spring cloud parent POM.  "Dalston.RELEASE" is the most recent stable version at the time of this writing, but you can use the latest stable version available.  Example:
 
 ```
     <dependencyManagement>
@@ -34,10 +34,10 @@
 
     **Part 2, create clients**  
     
-    In this next section we will create several client applications that will work together to compose a sentence.  The sentence will contain a subject, verb, article, adjective and noun such as ìI saw a leaky boatî or ìYou have the reasonable bookî.  5 services will randomly generate the word components, and a 6th service will assemble them into a sentence.
+    In this next section we will create several client applications that will work together to compose a sentence.  The sentence will contain a subject, verb, article, adjective and noun such as ‚ÄúI saw a leaky boat‚Äù or ‚ÄúYou have the reasonable book‚Äù.  5 services will randomly generate the word components, and a 6th service will assemble them into a sentence.
 
 7. Create a new Spring Boot web application.  
-  - Name the project "lab-4-subjectî, and use this value for the Artifact.  
+  - Name the project "lab-4-subject‚Äù, and use this value for the Artifact.  
   - Use JAR packaging and the latest versions of Java.  
   - Use Boot version 1.5.x or the latest stable version available.  
   - Add actuator and web as a dependencies.
@@ -60,7 +60,7 @@
 12. Add a Controller class
   - Place it in the 'demo' package or a subpackage of your choice.
   - Name the class anything you like.  Annotate it with @RestController.
-  - Add a String member variable named ìwordsî.  Annotate it with @Value("${words}î).
+  - Add a String member variable named ‚Äúwords‚Äù.  Annotate it with @Value("${words}‚Äù).
   - Add the following method to serve the resource (optimize this code if you like):
   ```
     @RequestMapping("/")
@@ -72,27 +72,27 @@
   ```
 
 13. Repeat steps 7 thru 12 (copy the entire project if it is easier), except use the following values:
-  - Name of application: ìlab-4-verbî
-  - spring.application.name: ìlab-4-verbî
-  - words: ìran,knew,had,saw,boughtî
+  - Name of application: ‚Äúlab-4-verb‚Äù
+  - spring.application.name: ‚Äúlab-4-verb‚Äù
+  - words: ‚Äúran,knew,had,saw,bought‚Äù
 
 14. Repeat steps 7 thru 12, except use the following values:
-  - Name of application: ìlab-4-articleî
-  - spring.application.name: ìlab-4-articleî
-  - words: ìa,theî
+  - Name of application: ‚Äúlab-4-article‚Äù
+  - spring.application.name: ‚Äúlab-4-article‚Äù
+  - words: ‚Äúa,the‚Äù
 
 15. Repeat steps 7 thru 12, except use the following values:
-  - Name of application: ìlab-4-adjectiveî
-  - spring.application.name: ìlab-4-adjectiveî
-  - words: ìreasonable,leaky,suspicious,ordinary,unlikelyî
+  - Name of application: ‚Äúlab-4-adjective‚Äù
+  - spring.application.name: ‚Äúlab-4-adjective‚Äù
+  - words: ‚Äúreasonable,leaky,suspicious,ordinary,unlikely‚Äù
 
 16. Repeat steps 7 thru 12, except use the following values:
-  - Name of application: ìlab-4-nounî
-  - spring.application.name: ìlab-4-nounî
-  - words: ìboat,book,vote,seat,backpack,partition,groundhogî
+  - Name of application: ‚Äúlab-4-noun‚Äù
+  - spring.application.name: ‚Äúlab-4-noun‚Äù
+  - words: ‚Äúboat,book,vote,seat,backpack,partition,groundhog‚Äù
 
 17. Create a new Spring Boot web application.  
-  - Name the application ìlab-4-sentenceî, and use this value for the Artifact.  
+  - Name the application ‚Äúlab-4-sentence‚Äù, and use this value for the Artifact.  
   - Use JAR packaging and the latest versions of Java and Boot.  
   - Add actuator and web as a dependencies.  
   - Alter the POM (or Gradle) just as you did in step 8. 
@@ -131,13 +131,13 @@
     }
   ```
 
-21. Run all of the word services and sentence service.  (Run within your IDE, or build JARs for each one (mvn clean package) and run from the command line (java -jar name-of-jar.jar), whichever you find easiest).  (If running from STS, uncheck ìEnable Live Bean supportî in the run configurations).  Since each service uses a separate port, they should be able to run side-by-side on the same computer.  Open [http://localhost:8020/sentence](http://localhost:8020/sentence) to see the completed sentence.  Refresh the URL and watch the sentence change.
+21. Run all of the word services and sentence service.  (Run within your IDE, or build JARs for each one (mvn clean package) and run from the command line (java -jar name-of-jar.jar), whichever you find easiest).  (If running from STS, uncheck ‚ÄúEnable Live Bean support‚Äù in the run configurations).  Since each service uses a separate port, they should be able to run side-by-side on the same computer.  Open [http://localhost:8020/sentence](http://localhost:8020/sentence) to see the completed sentence.  Refresh the URL and watch the sentence change.
  	
   **BONUS - Refactor to use Spring Cloud Config Server.**  
 
   We can use Eureka together with the config server to eliminate the need for each client to be configured with the location of the Eureka server
 
-22. Add a new file to your GitHub repository (the same repository used in the last lab) called ìapplication.ymlî (or properties).  Add the following key / values (use correct YAML formatting):
+22. Add a new file to your GitHub repository (the same repository used in the last lab) called ‚Äúapplication.yml‚Äù (or properties).  Add the following key / values (use correct YAML formatting):
   - eureka.client.serviceUrl.defaultZone=http://localhost:8010/eureka/ 
 
 23. Open the common-config-server project.  This is essentially the same config server that you produced in lab 3.  Alter the application.yml to point to your own github repository.  Save all and run this server.  (You can use it as the config server for almost all of the remaining labs in this course.)  
@@ -151,14 +151,14 @@
   </dependency>
 ```
 
-25. Edit each client applicationís application.properties file.  Remove the eureka client serviceUrl defaultZone key/value.  We will get this from the config server.
+25. Edit each client application‚Äôs application.properties file.  Remove the eureka client serviceUrl defaultZone key/value.  We will get this from the config server.
 
 26. In each client project, add the following key/value to bootstrap.yml (or bootstrap.properties), using correct YAML formatting: 
   - spring.cloud.config.uri: http://localhost:8001.
   
 27. Make sure the Eureka server is still running.  Start (or restart) each client. Open [http://localhost:8020/sentence](http://localhost:8020/sentence) to see the completed sentence.
 
-28. If you like, you can experiment with moving the ìwordsî properties to the GitHub repository so they can be served up by the config server.  Youíll need to use separate profile sections within the file (yml) or files with names that match the application names (yml or properties).  A single application.yml file would look something like this:
+28. If you like, you can experiment with moving the ‚Äúwords‚Äù properties to the GitHub repository so they can be served up by the config server.  You‚Äôll need to use separate profile sections within the file (yml) or files with names that match the application names (yml or properties).  A single application.yml file would look something like this:
 
   ```
   ---
@@ -212,14 +212,14 @@ primary, secondary, tertiary.  The server.port value should be 8011, 8012, and 8
 
 34.  Start all clients.  Open [http://localhost:8020/sentence](http://localhost:8020/sentence) to see the completed sentence.
 
-35.  To test Eurekaís fault tolerance, stop 1 or 2 of the Eureka instances.  Restart 1 or 2 of the clients to ensure they have no difficulty finding Eureka.  Note that it may take several seconds for the clients and servers to become fully aware of which services are up / down.  Make sure the sentence still displays.
+35.  To test Eureka‚Äôs fault tolerance, stop 1 or 2 of the Eureka instances.  Restart 1 or 2 of the clients to ensure they have no difficulty finding Eureka.  Note that it may take several seconds for the clients and servers to become fully aware of which services are up / down.  Make sure the sentence still displays.
 
 
 **Reflection:**  There are a number of remaining issues with the current application which can be addressed.
 
-1. These services contain duplicated code.  This was done only to make the instructions straightforward.  You can easily implement this system using a single ëwordí server which selects different words based on a @Profile.  (This is done in the solution)
+1. These services contain duplicated code.  This was done only to make the instructions straightforward.  You can easily implement this system using a single ‚Äòword‚Äô server which selects different words based on a @Profile.  (This is done in the solution)
 
-2. What happens if one of the ìwordî servers is down?  Right now our entire application will fail.  We will improve this later when we discuss circuit breakers with Hystrix.
+2. What happens if one of the ‚Äúword‚Äù servers is down?  Right now our entire application will fail.  We will improve this later when we discuss circuit breakers with Hystrix.
 
 3. To improve performance, can we run each of the calls in parallel?  We will improve this later when discussing Ribbon and Hystrix.
 
