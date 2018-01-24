@@ -110,7 +110,7 @@ In the dependency section, based on the requirement you choose on of the depende
 	
 ###Spring-cloud-projects
 
-[Spring Cloud Config](Spring_Cloud_Config_1.md)
+[Config Server](Spring_Cloud_Config_1.md)
 
-[Spring Cloud Config](Spring_Cloud_Config_1.md)
+[Service Discovery](spring_cloud_service_discovery_2.md)
 
