@@ -113,7 +113,7 @@ https://spring.io/blog/2015/01/20/microservice-registration-and-discovery-with-s
 
 Lab Instructions
 ----------------
-[Service Discovery Lab Instructions]spring_cloud_service_discovery_lab_instructions.md
+[Service Discovery Lab Instructions](spring_cloud_service_discovery_lab_instructions.md)
 
 
 	
