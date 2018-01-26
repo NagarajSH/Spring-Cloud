@@ -1,4 +1,4 @@
-What is spring cloud feign?
+What is spring cloud feign?<br>
 Ans: Feign is a declarative rest client from netflix, which allows to write calls to rest services with no implementation code.
 
 Note: Feign is an alternative to RestTemplate but it is even easier. Spring cloud provides easy wrapper for using Feign.
