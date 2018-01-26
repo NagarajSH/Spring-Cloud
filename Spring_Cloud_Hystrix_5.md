@@ -166,6 +166,6 @@ Note: All of the hystrix enabled endpoints will emit a stream called hystrix.str
 Note: Each method that is annotated with @HystrixCommand appears on the hystrix dashboard.
 
 Note: Monitoring large no of hystrix dashboard is not practical. 
-*****
+
 Turbine is a single hystrix-dashboard that listens to and aggregates all other hystrix enabled streams. Turbine interacts with Eureka to find all of the client services.
 
