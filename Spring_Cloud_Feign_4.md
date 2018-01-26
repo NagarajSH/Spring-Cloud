@@ -5,9 +5,9 @@ Note: Feign is an alternative to RestTemplate but it is even easier. Spring clou
 
 We know spring rest template provides easy way to call Rest services. For ex,
 
-	RestTemplate template = new RestTemplate();
-	String url = "http://localhost:8011/skuService";
-	Sku sku = template.getForObject(url,Sku.class, 473217);
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:8011/skuService";
+		Sku sku = template.getForObject(url,Sku.class, 473217);
 	
 Note: Still the above code needs to be written and unit tested.
 
