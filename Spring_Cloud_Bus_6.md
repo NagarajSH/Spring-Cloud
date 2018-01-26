@@ -29,17 +29,17 @@ Note: Spring cloud bus works automatically with Rabbit MQ on the localhost.
 
 How it works
 ------------
-1)To see the configuration changes first lets make some change in git repository.
-2)Make a POST request to /bus/refresh (because config server does not poll for changes)
-3)The /bus/refresh end point makes sure it reads the updated values.
-4)Broker will ensure the message delivery to all clients.
+1)To see the configuration changes first lets make some change in git repository.<br>
+2)Make a POST request to /bus/refresh (because config server does not poll for changes)<br>
+3)The /bus/refresh end point makes sure it reads the updated values.<br>
+4)Broker will ensure the message delivery to all clients.<br>
 5)Clients receive messages and refresh themselves.
 
 How refresh works
 -----------------
-We know spring boot applications can refreshed at runtime by adding actuator dependency. Actuator provides a /refresh POST end point. This end point affects only the following.
-1)Beans marked with @ConfigurationProperties
-2)Beans marked with @RefreshScope
+We know spring boot applications can refreshed at runtime by adding actuator dependency. Actuator provides a /refresh POST end point. This end point affects only the following.<br>
+1)Beans marked with @ConfigurationProperties<br>
+2)Beans marked with @RefreshScope<br>
 3)Logging level
 
 @ConfigurationProperties
