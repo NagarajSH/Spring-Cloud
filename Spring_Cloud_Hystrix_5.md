@@ -158,7 +158,7 @@ Hystrix Dashboard setup
 
 Accessing Hystrix Dashboard
 ---------------------------
-To access hystrix dashboard, use the url :  http://<host>:<port>/hystrix. <br>
+To access hystrix dashboard, use the url :  http://host:port/hystrix. <br>
 For ex, http://localhost:64789/hystrix.	But, this is not the actual monitor. It has a text field, which will ask for the url of the stream you want to monitor.We generally, mention hystrix stream. i.e. we enter "http://localhost:64789/hystrix.stream" in the text field.
 
 Note: All of the hystrix enabled endpoints will emit a stream called hystrix.stream.
