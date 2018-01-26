@@ -1,19 +1,19 @@
 Accessing microservices via web
 -------------------------------
-Accessing over public internet is problematic due to following reasons.
-1)Internal API's should not be exposed.
-2)Security has to be implemented, so that client applications can authenticate with all the services.
-3)CORS required. Cross origin resource sharing is needed, because by default all browsers have security precaution that disallows javascript calls to the domains other than the one's from which they are originated.
+Accessing over public internet is problematic due to following reasons.<br>
+1)Internal API's should not be exposed.<br>
+2)Security has to be implemented, so that client applications can authenticate with all the services.<br>
+3)CORS required. Cross origin resource sharing is needed, because by default all browsers have security precaution that disallows javascript calls to the domains other than the one's from which they are originated.<br>
 4)Multiple http calls are made by the client to get each word.
 
 The Need for API gateway
 ------------------------
 Different clients may have different needs.i.e. each client will not make calls to all services.For ex, mobile clients, desktop clients etc. We need an adapter to just do this. This is nothing but API gateway. API gateway provides simplified access for client. It does the following things.
 
-1)Provides custom API.
-2)security implementation.
-3)Eliminates CORS issue.
-4)Reduces the no of http calls from the client.
+1)Provides custom API.<br>
+2)security implementation.<br>
+3)Eliminates CORS issue.<br>
+4)Reduces the no of http calls from the client.<br>
 5)Other things like caching,filtering,protocol translation,transformation, link expansion etc can be done.
 
 Spring cloud netflix Zuul
@@ -24,8 +24,8 @@ Note: Router means that clients send request to Zuul and Zuul will send the requ
 
 Zuul usage
 ----------
-1)Create a spring boot application with spring-cloud-starter-zuul dependency.
-2)The above dependency will bring in all the needed dependencies including ribbon and hystrix.
+1)Create a spring boot application with spring-cloud-starter-zuul dependency.<br>
+2)The above dependency will bring in all the needed dependencies including ribbon and hystrix.<br>
 3)All we need is to enable the main class with @EnableZuulProxy
 
 Note: Zuul registers with Eureka along with all other clients. It gets all clientId's and create routes to them. For ex, /service-subject routes to service-subject service.
@@ -34,9 +34,9 @@ Note: If zuul runs on port say, 8080, All we need is to call localhost:8080/subj
 
 Zuul features
 -------------
-Zuul has lot of features with respect to routing.
-1)Services can be excluded by using property zuul.ignored-services
-2)Prefix can be added to the uri using property zuul.prefix=/api. Now url's become /api/noun etc.
+Zuul has lot of features with respect to routing.<br>
+1)Services can be excluded by using property zuul.ignored-services<br>
+2)Prefix can be added to the uri using property zuul.prefix=/api. Now url's become /api/noun etc.<br>
 3)URL can be adjusted. For ex, /noun uri needs to be changed to /sentence-noun, then set the property zuul.routes.noun.path=/sentence-noun.
 
 Note: By default all services are exposed using zuul. If you want to ignore use step1. For ex,
@@ -54,8 +54,8 @@ There is also possibility of caching between API Gateway and back end services.
 
 Spring's caching Abstraction
 ----------------------------
-It's very easy to use Spring's cache. 
-1)Annotate methods using @Cacheable, which needs cache name and key.
+It's very easy to use Spring's cache. <br>
+1)Annotate methods using @Cacheable, which needs cache name and key.<br>
 2)Define a cache manager. For ex, SynchronizedMaps, EHCache , Gemfire etc.
 
 Here is the code sample:
@@ -78,10 +78,10 @@ Modern http-based caching header, works better than expires.
 
 How ETag works
 --------------
-1)When client request for the resource, server responds with an etag. This ETag is a hash value calculated from the response string. This etag is an unique value. Both client and server saves this value associated with the request url.
-2)When client makes a request later for the same url, it sends the etag in the request header named "if-none-match". 
-3)Server calculates new hash.
-	a)If the hash value matches it returns 304. 304 means "not modified".
+1)When client request for the resource, server responds with an etag. This ETag is a hash value calculated from the response string. This etag is an unique value. Both client and server saves this value associated with the request url.<br>
+2)When client makes a request later for the same url, it sends the etag in the request header named "if-none-match".<br> 
+3)Server calculates new hash.<br>
+	a)If the hash value matches it returns 304. 304 means "not modified".<br>
 	b)If not return, 200 , new content and new etag.
 
 Note: The purpose of etag is to save bandwidth.
@@ -168,8 +168,8 @@ Note: In the above example, first expression gives us the list of teams. Second 
 
 Limitations
 -----------
-1)Traverson is not doing expansion automatically as seen above. We have to manually explore the links we want and manually attach them.
-2)It works with HAL format and if you want anyother formats you need to write your own unmarshaller.
+1)Traverson is not doing expansion automatically as seen above. We have to manually explore the links we want and manually attach them.<br>
+2)It works with HAL format and if you want anyother formats you need to write your own unmarshaller.<br>
 3)No support of XML.
 
 Other options
@@ -178,7 +178,8 @@ Spring data rest supports projection. Projection causes links to be inlined or p
 
 Defining projections
 --------------------
-1)Define projection as an interface.
+1)Define projection as an interface.<br>
+
 	@Projection(name="inlinePlayers", types={Team.class})
 	public interface InlinePlayers{
 		String getName();
@@ -200,7 +201,7 @@ Note: You can also annotate this interface with @Repository, if you want to retu
 
 Limitations with projections
 ----------------------------
-1)Works only with spring-data-rest.
+1)Works only with spring-data-rest.<br>
 2)Works if projections are part of the same microservice.
 	
 Protocol Translation
