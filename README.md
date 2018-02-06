@@ -72,7 +72,7 @@ Spring boot is an opinionated runtime for spring. It follows convention over con
 
 Spring-cloud
 ------------
-The goal of Spring cloud is to address the need of cloud based applications. cloud based applications are distributed applications running in an environment that is best characterized as volatile. There are some common patterns that are needed to address the reality of this platform. These patterns include centralized configuration management,service registration and discovery,load balancing,circuit brakers,routing,gateway etc.
+Spring cloud provides libraries to apply common patterns needed in distributed applications. Cloud based applications are distributed applications running in an environment that is best characterized as volatile. There are some common patterns that are needed to address the reality of this platform. These patterns include centralized configuration management,service registration and discovery,load balancing,circuit brakers,routing,gateway etc.
 
 Note: Spring cloud projects are all based on spring boot for easier dependency management.
 spring cloud applicationcontext startup process is modified, it is not done in normal way.
