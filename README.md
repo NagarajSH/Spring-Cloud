@@ -114,3 +114,14 @@ In the dependency section, based on the requirement you choose on of the depende
 
 [Service Discovery](spring_cloud_service_discovery_2.md)
 
+[Load Balancer](Spring_Cloud_Load_Balancing_3.md)
+
+[Feign](Spring_Cloud_Feign_4.md)
+
+[Circuit Breaker](Spring_Cloud_Hystrix_5.md)
+
+[Spring Cloud Bus](Spring_Cloud_Bus_6.md)
+
+[API_Gateway](Spring_Cloud_Api_Gateway_7.md)
+
+
